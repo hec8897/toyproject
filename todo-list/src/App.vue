@@ -7,7 +7,6 @@
       <img class='logo' alt="Vue logo" src="@/assets/logo.png">
       <h1>Vue Todo-list</h1>
     </div>
-
     <Inputs class='inputs'/>
 
     <ListView class='lists'/>

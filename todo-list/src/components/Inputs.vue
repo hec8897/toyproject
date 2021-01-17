@@ -20,7 +20,7 @@ export default {
       else{
         let Inputs = {
             desc:this.Inputs,
-            date:'2021-01-17'
+            date:this.$moment("YYYY-MM-DD")
           }
           this.$store.commit('AddList',Inputs);
           this.Inputs = ""
