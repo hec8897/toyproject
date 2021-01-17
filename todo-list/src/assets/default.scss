@@ -53,3 +53,8 @@ html,body{
     font-size: 16px;
     font-family: 'Noto Sans KR', sans-serif;
 }
+
+.shadow, .btn, .widget{
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 1px 1px 0 rgba(0,0,0,0.19);
+}
+

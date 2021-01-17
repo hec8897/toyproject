@@ -1,5 +1,5 @@
 <template>
-<div id="app">
+<div id="app" v-bind:class="[Mode]">
 
   <div class="home wrap">
 
@@ -13,17 +13,25 @@
     <ListView class='lists'/>
 
   </div>
+
+  <Widget/>
+
 </div>
 </template>
 
 <script>
 import Inputs from '@/components/Inputs.vue'
 import ListView from '@/components/ListView.vue'
+import Widget from '@/components/widget.vue'
 
 export default {
-  name: 'Home',
+  computed:{
+    Mode(){
+      return this.$store.state.Mode
+    }
+  },
   components: {
-    Inputs,ListView
+    Inputs,ListView,Widget
   }
 }
 </script>
@@ -32,10 +40,26 @@ export default {
 #app {
   text-align: center;
   width: 100%;
+  height: 100vh;
+  position: relative;
+  &.light{
+
+  }
+  &.dark{
+    background: #424242;
+    h1{
+      color: #fff;
+    }
+    .text{
+      color: #fff;
+    }
+  }
+
   div.wrap{
     max-width: 375px;
     margin: 0 auto;
   }
+
 }
 div.home{
   padding: 20px;
@@ -65,6 +89,13 @@ div.home{
   div.lists{
     width: 100%;
     flex: 8;
+    max-height: 320px;
+    overflow-y: scroll;
+    // overflow: hidden;
+  }
+
+  .list::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
   }
 }
   

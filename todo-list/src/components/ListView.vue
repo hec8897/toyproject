@@ -1,7 +1,7 @@
 <template>
     <div class="list">
         <ul>
-            <List v-for="(listData,index) in listData" v-bind:key="index" :list='listData'/>
+            <List v-for="(listData,index) in listData" v-bind:key="index" :list='listData' :DataIndex="index"/>
         </ul>
     </div>
 </template>
@@ -18,12 +18,3 @@ export default {
     }
 }
 </script>
-
-<style lang="scss">
-div.list{
-    ul{
-
-    }
-}
-    
-</style>

@@ -1,10 +1,12 @@
 <template>
     <li class='todo-list'>
         <div class="list">
-            <input type="checkbox" name="" id="">
-            <span @click="AciveList(Mode)">
-                {{list.desc}}
+            <span @click="AciveList(Mode)" class='text'>
+                {{DataIndex+1}}. {{list.desc}}
             </span>
+            <div class="btns">
+                <span class="btn red" @click="DeleteList(DataIndex)">삭제</span>
+            </div>
         </div>
 
         <div class='desc' :class="{active:Mode}">
@@ -12,18 +14,15 @@
                 {{list.desc}}
             </p>
             <div class="add">
-                <span>{{list.date}}</span>
-                <div class="btns">
-                    <span class="btn">삭제</span>
-                    <span class="btn">수정</span>
-                </div>
+                <span class='text'>{{list.date}}</span>
+
             </div>
         </div>
     </li>
 </template>
 <script>
 export default {
-    props:['list'],
+    props:['list','DataIndex'],
     data() {
         return {
             Mode:false
@@ -32,6 +31,12 @@ export default {
     methods: {
         AciveList(Mode){
             this.Mode = Mode?false:true
+        },
+        DeleteList(index){
+            console.log(
+                this.$store.state.TodoList[index]
+            )
+            this.$store.state.TodoList.splice(index,1)
         }
     },
 }
@@ -59,8 +64,21 @@ export default {
                     text-overflow: ellipsis;
                     margin: 0px 15px;
                     cursor: pointer;
+                    text-align: left;
                     &:hover{
                         color: royalblue;
+                    }
+                }
+                .btn{
+                    cursor: pointer;
+                    margin-left: 15px;
+                    padding: 2px 5px;
+                    background: royalblue;
+                    border-radius: 3px;
+                    color: #fff;
+                    font-size: 0.875rem;
+                    &.red{
+                        background: tomato;
                     }
                 }
             }
@@ -72,8 +90,10 @@ export default {
                     display: block;
                 }
                 p{
+                    padding: 10px;
                     margin-bottom: 20px;
                     line-height: 1.5rem;
+                    background: lightgray;
                 }
                 div.add{
                     display: flex;
@@ -81,12 +101,6 @@ export default {
                     justify-content: space-between;
                     span{
                         font-size: 12px;
-                    }
-                    .btn{
-                        margin-left: 15px;
-                        padding: 5px 10px;
-                        background: lightblue;
-                        border-radius: 3px;
                     }
                 }
             }
